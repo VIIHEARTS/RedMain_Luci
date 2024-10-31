@@ -1,0 +1,50 @@
+[Red Maid: An old maid horror game]
+{Prmise}
+- The player starts with the Old maid card apon starting
+- Overall goal is to get rid of the old maid card by collecting pairs around the mansion
+- Able to swap old maid card for exit key (End)
+
+{Scripts - Main}
+main (cards)
+	randomise 3 duplicates around the map 
+	dont allow player to get rid of old maid card
+	
+	//if (hasOldMaid == true)
+	{
+		player cannot get rid of card(oldMaid);
+	}
+	
+	dont allow player to leave if they still have the old maid card
+	
+	//if (hasOldMaid == true)
+	{
+		player cannot leave via main or || enter maids room to swap card for key;
+	}
+	
+	swap old maid card with exit key && let player leave (End)
+	
+	//if (foundPairs == true)
+	{
+		player can enter maids room and swap card for key && leave via main door;
+	}
+	else
+	{
+		is stuck in manor;
+	}
+
+enviroment (enemy)
+	timer that counts down till maid has found you
+	game ends on timer hitting zero
+	
+config 
+- list of cards that will need a pair 
+	example --  6club
+				9spade
+				8hearts
+  check if polayer has a pair of one of these cards if yes ollow to be discarded if not rcontiuinue playing.
+  
+  Final check if player has a match of every cards after checking the list trigger a can swap state
+  and final check for if player is interacting with exit for hass swapped
+		if yes player can leave trigger open door state
+		if no player has to swap oldMaid card for a key
+
